@@ -267,7 +267,7 @@ public class BK_banktab_overview_stepdefinition {
 	}
 
 	@Then("verify the customer details through customer id in particular bank BK")
-	public void verify_the_customer_details_through_customer_id_in_particular_bank_bk() {
+	public void verify_the_customer_details_through_customer_id_in_particular_bank_bk() throws InterruptedException {
 		bankactions.verifythecustomerdetailsthroughcustomeridinparticularbankBK();
 	    StepTracker.setCurrentStep("verify the customer details through customer id in particular bank BK");
 	}

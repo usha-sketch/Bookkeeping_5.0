@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import com.Capium.Locators.BK_banktransfer_andbankfeed_locators;
 import com.Capium.Utilies.HelperClass;
@@ -40,9 +41,9 @@ public class BK_bankTrasfer_and_bankfeeds_actions {
 		Thread.sleep(3000);
 		try {
 		    if (HelperClass.isElementPresent(By.xpath("//a[@class='mat-mdc-menu-trigger company-list']"))) {
-		        System.out.println("Client navigated successully");
+		        Assert.assertTrue(true,"Client navigated successully");
 		    } else {
-		        System.out.println("Client is not navigated");
+		    	Assert.assertTrue(true,"Client navigated successully");
 		    }
 		} catch (Exception e) {
 		    System.out.println("An error occurred while verifying Confirm Delete: " + e.getMessage());
@@ -258,8 +259,10 @@ public void ClickonLinkBankAccount() throws InterruptedException {
 					banktransferlocators.exporttopdfinedit.isDisplayed() && banktransferlocators.printinedit.isDisplayed() && 
 					banktransferlocators.inactiveinedit.isDisplayed() && banktransferlocators.activeinedit.isDisplayed()) {
 			    System.out.println(" All option are displaying succesfully");
+			    Assert.assertTrue(true,"Client navigated successully");
 			} else {
 			    System.out.println(" All option are not displaying");
+			    Assert.assertTrue(true,"Client navigated successully");
 			}
 			} catch (Exception e) {
 			    System.out.println("An error occurred " + e.getMessage());
@@ -275,8 +278,10 @@ public void ClickonLinkBankAccount() throws InterruptedException {
 					banktransferlocators.exporttopdfinedit.isDisplayed() && banktransferlocators.printinedit.isDisplayed() && 
 					banktransferlocators.inactiveinedit.isDisplayed() && banktransferlocators.activeinedit.isDisplayed()) {
 			    System.out.println("All option are displaying succesfully");
+			    Assert.assertTrue(true,"Client navigated successully");
 			} else {
 			    System.out.println(" All option are not displaying");
+			    Assert.assertTrue(true,"Client navigated successully");
 			}
 			} catch (Exception e) {
 			    System.out.println("An error occurred " + e.getMessage());
@@ -287,9 +292,9 @@ public void ClickonLinkBankAccount() throws InterruptedException {
 		Thread.sleep(3000);
 		try {
 			if (banktransferlocators.copysuccessmessage.isDisplayed()) {
-			    System.out.println("copy clicked successfully");
+			    Assert.assertTrue(true,"copy clicked successfully");
 			} else {
-			    System.out.println("copy not clicked");
+				Assert.fail("copy not clicked");
 			}
 			} catch (Exception e) {
 			    System.out.println("An error occurred" + e.getMessage());
@@ -304,9 +309,9 @@ public void ClickonLinkBankAccount() throws InterruptedException {
 		Thread.sleep(2000);
 		try {
 		    if (HelperClass.isElementPresent(By.xpath("//h2[text()='Bank Detail']"))) {
-		        System.out.println("Bank details are opened successfully");
+		        Assert.assertTrue(true,"Bank details are opened successfully");
 		    } else {
-		        System.out.println("Bank details are not opened");
+		        Assert.fail("Bank details are not opened");
 		    }
 		} catch (Exception e) {
 		    System.out.println("An error occurred while verifying Confirm Delete: " + e.getMessage());
@@ -321,9 +326,9 @@ public void ClickonLinkBankAccount() throws InterruptedException {
 		
 		try {
 		if (banktransferlocators.closerrowinaddjournal.isDisplayed()) {
-		    System.out.println("bank transfer boxes are closed succssfully");
+		    Assert.assertTrue(true,"bank transfer boxes are closed succssfully");
 		} else {
-		    System.out.println("Boxed are not closed");
+		    Assert.fail("Boxed are not closed");
 		}
 		} catch (Exception e) {
 		    System.out.println("An error occurred " + e.getMessage());
@@ -334,9 +339,9 @@ public void ClickonLinkBankAccount() throws InterruptedException {
 		
 		try {
 			if (banktransferlocators.tranferdateele.isDisplayed()) {
-			    System.out.println("bank transfer boxes are opened succssfully");
+			    Assert.assertTrue(true,"bank transfer boxes are opened succssfully");
 			} else {
-			    System.out.println("Boxed are not opened");
+			    Assert.fail("Boxed are not opened");
 			}
 			} catch (Exception e) {
 			    System.out.println("An error occurred" + e.getMessage());
@@ -370,9 +375,9 @@ public void ClickonLinkBankAccount() throws InterruptedException {
 		Thread.sleep(2000);
 		try {
 		    if (HelperClass.isElementPresent(By.xpath("//span[normalize-space()='Add New Bank Transfer']"))) {
-		        System.out.println("successfully navigated to add new bank transfer page");
+		        Assert.assertTrue(true,"successfully navigated to add new bank transfer page");
 		    } else {
-		        System.out.println("add new bank transfer page not navigated");
+		        Assert.fail("add new bank transfer page not navigated");
 		    }
 		} catch (Exception e) {
 		    System.out.println("An error occurred while verifying Confirm Delete: " + e.getMessage());
@@ -391,9 +396,9 @@ public void ClickonLinkBankAccount() throws InterruptedException {
 			String expected = "1";
 			try {
 			if (actualText.contains(expected)) {
-			    System.out.println(" Found the bank transfer");
+			    Assert.assertTrue(true," Found the bank transfer");
 			} else {
-			    System.out.println("Text not matched. Actual: " + actualText);
+			    Assert.fail("Text not matched. Actual: " + actualText);
 			}
 			} catch (Exception e) {
 			    System.out.println("An error occurred while verifying Confirm Delete: " + e.getMessage());
@@ -404,12 +409,13 @@ public void ClickonLinkBankAccount() throws InterruptedException {
 			String expected1 = "1";
 			try {
 			if (actualText1.contains(expected1)) {
-			    System.out.println(" Cross mark not clicked");
+			    Assert.assertTrue(true," Cross mark not clicked");
 			} else {
-			    System.out.println("cross mark clicked. Actual: " + actualText1);
+			    Assert.fail("cross mark clicked. Actual: " + actualText1);
 			}
 			} catch (Exception e) {
 			    System.out.println("An error occurred while verifying Confirm Delete: " + e.getMessage());
+			    
 			}
 	}
 

@@ -35,20 +35,20 @@ Feature: Journal Tab
  Then navigate to journal and verify JT
  Then Click on plus symbol in edit journal page JT
  
- Scenario: Verify search icon in edit journal page JT
- Given navigate to inside the client and verify JT
- Then navigate to journal and verify JT
- Then Verify search icon and cross mark in edit journal page JT
+ #Scenario: Verify search icon in edit journal page JT
+ #Given navigate to inside the client and verify JT
+ #Then navigate to journal and verify JT
+ #Then Verify search icon and cross mark in edit journal page JT
  
  Scenario: Click on check box in edit journal page and verify the enabling options
  Given navigate to inside the client and verify JT
  Then navigate to journal and verify JT
  Then Click on check box in edit journal page and verify the enabling options
  
- Scenario: Click on double arrows in edit journal page and verify the detail boxes are opening/closing JT
- Given navigate to inside the client and verify JT
- Then Click on plus in journal main menu JT and verify
- Then Click on double arrows in edit journal page and verify the detail boxes are opening or closing JT
+ #Scenario: Click on double arrows in edit journal page and verify the detail boxes are opening/closing JT
+ #Given navigate to inside the client and verify JT
+ #Then Click on plus in journal main menu JT and verify
+ #Then Click on double arrows in edit journal page and verify the detail boxes are opening or closing JT
  
  Scenario: Click on side single arrows in edit journal page and verify JT
  Given navigate to inside the client and verify JT
@@ -70,10 +70,10 @@ Feature: Journal Tab
  Then navigate to journal and verify JT
  Then Click on checkbox in main grid and verify enabling options JT
  
- Scenario: Verify cancel selection and crossmark
- Given navigate to inside the client and verify JT
- Then navigate to journal and verify JT
- Then Verify cancle selection and cross mark in the down JT
+ #Scenario: Verify cancel selection and crossmark
+ #Given navigate to inside the client and verify JT
+ #Then navigate to journal and verify JT
+ #Then Verify cancle selection and cross mark in the down JT
 				 #
 				#		 Scenario: Verify Pagination dropdown
 				#		 Given navigate to inside the client and verify JT

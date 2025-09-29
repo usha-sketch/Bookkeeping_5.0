@@ -34,6 +34,10 @@ public class BK_banktab_locators {
 	@CacheLookup
 	public WebElement accountnameTF;
 	
+	@FindBy(xpath = "//mat-form-field[contains(@class,'mat-mdc-form-field ng-tns-c20-149')]")
+	@CacheLookup
+	public WebElement accountnameTFinedit;
+	
 	@FindBy(xpath = "//input[@formcontrolname='accountCode']")
 	@CacheLookup
 	public WebElement nominalTF;
@@ -46,7 +50,7 @@ public class BK_banktab_locators {
 	@CacheLookup
 	public WebElement savebtn;
 	
-	@FindBy(xpath = "//mat-icon[text()='edit']")
+	@FindBy(xpath = "(//mat-icon[text()='edit'])[1]")
 	@CacheLookup
 	public WebElement editicon;
 	
@@ -110,6 +114,10 @@ public class BK_banktab_locators {
 	@FindBy(xpath = "//input[@placeholder='Search']")
 	@CacheLookup
 	public WebElement searchTFineditpage;
+	
+	@FindBy(xpath = "//input[@placeholder='Search here...']")
+	@CacheLookup
+	public WebElement searchTFoverview;
 	
 	@FindBy(xpath = "//a[normalize-space()='JNL - 2']")
 	@CacheLookup

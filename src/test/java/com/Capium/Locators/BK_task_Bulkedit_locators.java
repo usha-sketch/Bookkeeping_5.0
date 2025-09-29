@@ -34,6 +34,10 @@ public class BK_task_Bulkedit_locators {
 	@CacheLookup
 	public WebElement checkboxinedit;
 	
+	@FindBy(xpath = "(//input[@type='checkbox'])[2]")
+	@CacheLookup
+	public WebElement checkboxinedittwotwo;
+	
 	@FindBy(xpath = "(//div[@aria-haspopup='listbox'])[1]")
 	@CacheLookup
 	public WebElement accountsdropdown;
@@ -62,7 +66,7 @@ public class BK_task_Bulkedit_locators {
 	@CacheLookup
 	public WebElement todate;
 	
-	@FindBy(xpath = "(//span[@class='mat-mdc-button-touch-target'])[20]")
+	@FindBy(xpath = "(//span[@class='mat-mdc-button-touch-target'])[21]")
 	@CacheLookup
 	public WebElement fromcalender;
 	

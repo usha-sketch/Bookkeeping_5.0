@@ -1,5 +1,7 @@
 package com.Capium.Actions;
 
+import static org.testng.Assert.fail;
+
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.Toolkit;
@@ -14,6 +16,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import com.Capium.Locators.BK_journal_locators;
 import com.Capium.Utilies.HelperClass;
@@ -34,18 +37,18 @@ public class BK_journal_Actions {
 		}
 	
 	public void navigatetoinsidetheclientindashboardandverifyJT() throws InterruptedException {
-		Thread.sleep(3000);
+		HelperClass.waitForPageToLoad(driver);
 		HelperClass.scrollUntilElementVisible(HelperClass.getDriver(), journallocators.searchTFindashboard);
-		Thread.sleep(3000);
+		HelperClass.waitForPageToLoad(driver);
 		journallocators.searchTFindashboard.sendKeys("Journal" + Keys.ENTER);
-		Thread.sleep(3000);
+		HelperClass.waitForPageToLoad(driver);
 		HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.newclientid);
-		Thread.sleep(3000);
+		HelperClass.waitForPageToLoad(driver);
 		try {
 		    if (HelperClass.isElementPresent(By.xpath("//a[@class='mat-mdc-menu-trigger company-list']"))) {
-		        System.out.println("Client navigated successully");
+		        Assert.assertTrue(true,"Client navigated successully");
 		    } else {
-		        System.out.println("Client is not navigated");
+		        Assert.fail("Client is not navigated");
 		    }
 		} catch (Exception e) {
 		    System.out.println("An error occurred while verifying Confirm Delete: " + e.getMessage());
@@ -53,16 +56,16 @@ public class BK_journal_Actions {
       }
 		
 		public void navigatetojournalandverifyJT() throws InterruptedException {
-			Thread.sleep(3000);
+			HelperClass.waitForPageToLoad(driver);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.task);
-			Thread.sleep(3000);
+			HelperClass.waitForPageToLoad(driver);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.journaltab);
-			Thread.sleep(3000);
+			HelperClass.waitForPageToLoad(driver);
 			try {
 			    if (HelperClass.isElementPresent(By.xpath("//span[contains(text(),'Add Journal')]"))) {
-			        System.out.println("Journal tab is navigated successfully");
+			        Assert.assertTrue(true,"Journal tab is navigated successfully");
 			    } else {
-			        System.out.println("Journal tab is not navigated");
+			        Assert.fail("Journal tab is not navigated");
 			    }
 			} catch (Exception e) {
 			    System.out.println("An error occurred while verifying Confirm Delete: " + e.getMessage());
@@ -70,16 +73,16 @@ public class BK_journal_Actions {
 		}
 		
 		public void ClickonplusinjournalmainmenuJTandverify() throws InterruptedException {
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.task);
 			//Thread.sleep(3000);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.plusinjournalmainmenu);
-			Thread.sleep(3000);
+			HelperClass.waitForPageToLoad(driver);
 			try {
 			    if (HelperClass.isElementPresent(By.xpath("//span[normalize-space()='Add New Journal']"))) {
-			        System.out.println("successfully navigated to add new journal page");
+			        Assert.assertTrue(true,"successfully navigated to add new journal page");
 			    } else {
-			        System.out.println("add new journal page not navigated");
+			        Assert.fail("add new journal page not navigated");
 			    }
 			} catch (Exception e) {
 			    System.out.println("An error occurred while verifying Confirm Delete: " + e.getMessage());
@@ -87,39 +90,39 @@ public class BK_journal_Actions {
 		}
 		
 		public void addjournalandverifyJT() throws InterruptedException {
-			Thread.sleep(3000);
+			HelperClass.waitForPageToLoad(driver);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.addjournakbtn);
-			Thread.sleep(3000);
+			HelperClass.waitForPageToLoad(driver);
 			try {
 			    if (HelperClass.isElementPresent(By.xpath("//span[normalize-space()='Add New Journal']"))) {
-			        System.out.println("successfully navigated to add new journal page");
+			        Assert.assertTrue(true,"successfully navigated to add new journal page");
 			    } else {
-			        System.out.println("add new journal page not navigated");
+			        Assert.fail("add new journal page not navigated");
 			    }
 			} catch (Exception e) {
 			    System.out.println("An error occurred while verifying Confirm Delete: " + e.getMessage());
 			}
 			
 			HelperClass.scrollUntilElementVisible(HelperClass.getDriver(), journallocators.accountDDinjournaldetails);
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			journallocators.accountDDinjournaldetails.sendKeys("1010");
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.salesCOA);
 			journallocators.creditamountTF.sendKeys("500");
 			journallocators.addnewlineinJT.click();
-			Thread.sleep(3000);
+			HelperClass.waitForPageToLoad(driver);
 			journallocators.secondaccountDDinjournaldetails.sendKeys("8045");
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.cashinhandCOA);
 			journallocators.debitamountTF.sendKeys("500");
-			Thread.sleep(3000);
+			HelperClass.waitForPageToLoad(driver);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.unknownele);
-			Thread.sleep(3000);
+			HelperClass.waitForPageToLoad(driver);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.saveandexitinaddjournal);
-			Thread.sleep(3000);
+			HelperClass.waitForPageToLoad(driver);
 			try {
 			    if (HelperClass.isElementPresent(By.xpath("//span[contains(text(),'Add Journal')]"))) {
-			        System.out.println("Journal tab is navigated successfully");
+			        Assert.assertTrue(true,"Journal tab is navigated successfully");
 			    } else {
-			        System.out.println("Journal tab is not navigated");
+			        Assert.fail("Journal tab is not navigated");
 			    }
 			} catch (Exception e) {
 			    System.out.println("An error occurred while verifying Confirm Delete: " + e.getMessage());
@@ -127,97 +130,97 @@ public class BK_journal_Actions {
 		}
 		
 		public void addnewlinesanddeletelinesforjournalandverifyJT() throws InterruptedException {
-			Thread.sleep(3000);
+			HelperClass.waitForPageToLoad(driver);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.addjournakbtn);
-			Thread.sleep(3000);
+			HelperClass.waitForPageToLoad(driver);
 			try {
 			    if (HelperClass.isElementPresent(By.xpath("//span[normalize-space()='Add New Journal']"))) {
-			        System.out.println("successfully navigated to add new journal page");
+			        Assert.assertTrue(true,"successfully navigated to add new journal page");
 			    } else {
-			        System.out.println("add new journal page not navigated");
+			        Assert.fail("add new journal page not navigated");
 			    }
 			} catch (Exception e) {
 			    System.out.println("An error occurred while verifying Confirm Delete: " + e.getMessage());
 			}
 			
 			HelperClass.scrollUntilElementVisible(HelperClass.getDriver(), journallocators.accountDDinjournaldetails);
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			journallocators.accountDDinjournaldetails.sendKeys("1010");
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.salesCOA);
 			//journallocators.creditamountTF.sendKeys("500");
-			Thread.sleep(3000);
+			HelperClass.waitForPageToLoad(driver);
 			journallocators.addnewlineinJT.click();
-			Thread.sleep(3000);
+			HelperClass.waitForPageToLoad(driver);
 			try {
 			    if (HelperClass.isElementPresent(By.xpath("(//input[@aria-haspopup='listbox'])[2]"))) {
-			        System.out.println("secondline added succesfully");
+			        Assert.assertTrue(true,"secondline added succesfully");
 			    } else {
-			        System.out.println("secondline not added");
+			        Assert.fail("secondline not added");
 			    }
 			} catch (Exception e) {
 			    System.out.println("An error occurred while verifying Confirm Delete: " + e.getMessage());
 			}
 			
 			
-			Thread.sleep(4000);
+			HelperClass.waitForPageToLoad(driver);
 			journallocators.addnewlineinJT.click();
-			Thread.sleep(3000);
+			HelperClass.waitForPageToLoad(driver);
 			try {
 			    if (HelperClass.isElementPresent(By.xpath("(//input[@aria-haspopup='listbox'])[3]"))) {
-			        System.out.println("Thirdline added succesfully");
+			        Assert.assertTrue(true,"Thirdline added succesfully");
 			    } else {
-			        System.out.println("Thirdline not added");
+			        Assert.fail("Thirdline not added");
 			    }
 			} catch (Exception e) {
 			    System.out.println("An error occurred while verifying Confirm Delete: " + e.getMessage());
 			}
 			
-			Thread.sleep(4000);
+			HelperClass.waitForPageToLoad(driver);
 			journallocators.addnewlineinJT.click();
-			Thread.sleep(3000);
+			HelperClass.waitForPageToLoad(driver);
 			try {
 			    if (HelperClass.isElementPresent(By.xpath("(//input[@aria-haspopup='listbox'])[4]"))) {
-			        System.out.println("fourthline added succesfully");
+			        Assert.assertTrue(true,"fourthline added succesfully");
 			    } else {
-			        System.out.println("fourthline not added");
+			        Assert.fail("fourthline not added");
 			    }
 			} catch (Exception e) {
 			    System.out.println("An error occurred while verifying Confirm Delete: " + e.getMessage());
 			}
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			journallocators.deletefour.click();
-			Thread.sleep(3000);
+			HelperClass.waitForPageToLoad(driver);
 			try {
 			    if (HelperClass.isElementPresent(By.xpath("(//input[@aria-haspopup='listbox'])[4]"))) {
-			        System.out.println("fourthline not deleted");
+			        Assert.assertTrue(true,"fourthline not deleted");
 			    } else {
-			        System.out.println("fourthline deleted");
+			        Assert.fail("fourthline deleted");
 			    }
 			} catch (Exception e) {
 			    System.out.println("An error occurred while verifying Confirm Delete: " + e.getMessage());
 			}
 		
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			journallocators.deletethree.click();
-			Thread.sleep(3000);
+			HelperClass.waitForPageToLoad(driver);
 			try {
 			    if (HelperClass.isElementPresent(By.xpath("(//input[@aria-haspopup='listbox'])[3]"))) {
-			        System.out.println("Thirdline not deleted");
+			        Assert.assertTrue(true,"Thirdline not deleted");
 			    } else {
-			        System.out.println("Thirdline deleted");
+			        Assert.fail("Thirdline deleted");
 			    }
 			} catch (Exception e) {
 			    System.out.println("An error occurred while verifying Confirm Delete: " + e.getMessage());
 			}
 			
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			journallocators.deletetwo.click();
-			Thread.sleep(3000);
+			HelperClass.waitForPageToLoad(driver);
 			try {
 			    if (HelperClass.isElementPresent(By.xpath("(//input[@aria-haspopup='listbox'])[2]"))) {
 			        System.out.println("second line not deleted");
 			    } else {
-			        System.out.println("second line deleted");
+			        Assert.fail("second line deleted");
 			    }
 			} catch (Exception e) {
 			    System.out.println("An error occurred while verifying Confirm Delete: " + e.getMessage());
@@ -229,14 +232,14 @@ public class BK_journal_Actions {
 			
 		public void ClickonplussymbolineditjournalpageJT() throws InterruptedException {
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.editiconjournal);
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.plusineditjournal);
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			try {
 			    if (HelperClass.isElementPresent(By.xpath("//span[normalize-space()='Add New Journal']"))) {
-			        System.out.println("successfully navigated to add new journal page");
+			        Assert.assertTrue(true,"successfully navigated to add new journal page");
 			    } else {
-			        System.out.println("add new journal page not navigated");
+			        Assert.fail("add new journal page not navigated");
 			    }
 			} catch (Exception e) {
 			    System.out.println("An error occurred while verifying Confirm Delete: " + e.getMessage());
@@ -245,11 +248,11 @@ public class BK_journal_Actions {
 		
 		public void VerifysearchiconineditjournalpageJT() throws InterruptedException {
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.editiconjournal);
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.searchineditpage);
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			journallocators.searchTFineditpage.sendKeys("2");
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			 String actualText = HelperClass.getText(By.xpath("//a[normalize-space()='JNL - 2']")).trim();
 				String expected = "2";
 				try {
@@ -262,14 +265,14 @@ public class BK_journal_Actions {
 				    System.out.println("An error occurred while verifying Confirm Delete: " + e.getMessage());
 				}
 				HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.crossmarkinsearch);
-				Thread.sleep(2000);
+				HelperClass.waitForPageToLoad(driver);
 				String actualText1 = HelperClass.getText(By.xpath("//input[@placeholder='Search']")).trim();
 				String expected1 = "2";
 				try {
 				if (actualText1.contains(expected1)) {
-				    System.out.println(" Cross mark not clicked");
+				    Assert.fail(" Cross mark not clicked");
 				} else {
-				    System.out.println("cross mark clicked. Actual: " + actualText1);
+				    Assert.assertTrue(true,"cross mark clicked. Actual: " + actualText1);
 				}
 				} catch (Exception e) {
 				    System.out.println("An error occurred while verifying Confirm Delete: " + e.getMessage());
@@ -278,16 +281,16 @@ public class BK_journal_Actions {
 		
 		public void Clickoncheckboxineditjournalpageandverifytheenablingoptions() throws InterruptedException {
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.editiconjournal);
-			Thread.sleep(4000);
+			HelperClass.waitForPageToLoad(driver);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.checkboxinedit);
 			try {
 				if (journallocators.deleteinedit.isDisplayed() && journallocators.copyinedit.isDisplayed() &&
 						journallocators.exporttoexcelinedit.isDisplayed() && journallocators.exporttocsvinedit.isDisplayed() && 
 						journallocators.exporttopdfinedit.isDisplayed() && journallocators.printinedit.isDisplayed() && 
 						journallocators.inactiveinedit.isDisplayed() && journallocators.activeinedit.isDisplayed()) {
-				    System.out.println(" All option are displaying succesfully");
+				    Assert.assertTrue(true," All option are displaying succesfully");
 				} else {
-				    System.out.println(" All option are not displaying");
+				    Assert.fail(" All option are not displaying");
 				}
 				} catch (Exception e) {
 				    System.out.println("An error occurred " + e.getMessage());
@@ -298,30 +301,30 @@ public class BK_journal_Actions {
 		public void ClickondoublearrowsineditjournalpageandverifythedetailboxesareopeningorclosingJT() throws InterruptedException{
 //			wait.until(ExpectedConditions.visibilityOf(journallocators.openarrowinaddjournal));
 //			wait.until(ExpectedConditions.elementToBeClickable(journallocators.openarrowinaddjournal));
-			
+			HelperClass.waitForPageToLoad(driver);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.editiconjournal);
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.openarrowinaddjournal);
 			
 			try {
 			if (journallocators.closerrowinaddjournal.isDisplayed()) {
-			    System.out.println("journal boxes are closed succssfully");
+			    Assert.assertTrue(true,"journal boxes are closed succssfully");
 			} else {
-			    System.out.println("Boxed are not closed");
+			    Assert.fail("Boxed are not closed");
 			}
 			} catch (Exception e) {
 			    System.out.println("An error occurred " + e.getMessage());
 			}
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.closerrowinaddjournal);
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 //			wait.until(ExpectedConditions.visibilityOf(journallocators.closerrowinaddjournal));
 //			wait.until(ExpectedConditions.elementToBeClickable(journallocators.closerrowinaddjournal));
 			try {
 				if (journallocators.journalnoele.isDisplayed()) {
-				    System.out.println("journal boxes are opened succssfully");
+				    Assert.assertTrue(true,"journal boxes are opened succssfully");
 				} else {
-				    System.out.println("Boxed are not opened");
+				    Assert.fail("Boxed are not opened");
 				}
 				} catch (Exception e) {
 				    System.out.println("An error occurred" + e.getMessage());
@@ -329,39 +332,39 @@ public class BK_journal_Actions {
 		}
 		
 		public void ClickonsidesinglearrowsineditjournalpageandverifyJT() throws InterruptedException {
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.singlearrow1);
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			try {
 				if (journallocators.journalnoele.isDisplayed()) {
-				    System.out.println("Arrow 1 not clicked");
+				    Assert.fail("Arrow 1 not clicked");
 				} else {
-				    System.out.println("Arrow 1 is clicked");
+				    Assert.assertTrue(true,"Arrow 1 is clicked");
 				}
 				} catch (Exception e) {
 				    System.out.println("An error occurred" + e.getMessage());
 				}
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.singlearrow2);
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			try {
 				if (journallocators.addnewlineinJT.isDisplayed()) {
-				    System.out.println("Arrow 2 not clicked");
+				    Assert.fail("Arrow 2 not clicked");
 				} else {
-				    System.out.println("Arrow 2 is clicked");
+				    Assert.assertTrue(true,"Arrow 2 is clicked");
 				}
 				} catch (Exception e) {
 				    System.out.println("An error occurred" + e.getMessage());
 				}
 			
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.singlearrow3);
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			try {
 				if (journallocators.chooseafile.isDisplayed()) {
-				    System.out.println("Arrow 3 is clicked");
+				    Assert.assertTrue(true,"Arrow 3 is clicked");
 				} else {
-				    System.out.println("Arrow 3 is not clicked");
+				    Assert.fail("Arrow 3 is not clicked");
 				}
 				} catch (Exception e) {
 				    System.out.println("An error occurred" + e.getMessage());
@@ -369,9 +372,9 @@ public class BK_journal_Actions {
 		}
 		
 		public void verifysearchbarinmaingridJT() throws InterruptedException {
-			Thread.sleep(5000);
+			HelperClass.waitForPageToLoad(driver);
 			journallocators.searchbarinmaingrid.sendKeys("description1" + Keys.ENTER);
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			
 			List<WebElement> referenceCells = HelperClass.getDriver()
 					.findElements(By.xpath("//span[@title='description1']"));
@@ -404,9 +407,9 @@ public class BK_journal_Actions {
 			String expected = "All Years";
 	 
 			if (actualText.equals(expected)) {
-			    System.out.println("Dropdown Selected all years option");
+			    Assert.assertTrue(true,"Dropdown Selected all years option");
 			} else {
-			    System.out.println("Dropdown not Selected all years option. Actual: " + actualText);
+			    Assert.fail("Dropdown not Selected all years option. Actual: " + actualText);
 			}
 			
 //			Thread.sleep(2000);
@@ -424,9 +427,9 @@ public class BK_journal_Actions {
 			String expected1 = "01-Jan-2025 - 31-Dec-2025";
 	 
 			if (actualText1.equals(expected1)) {
-			    System.out.println("Dropdown Selected 01-Jan-2025 - 31-Dec-2025 option");
+			    Assert.assertTrue(true,"Dropdown Selected 01-Jan-2025 - 31-Dec-2025 option");
 			} else {
-			    System.out.println("Dropdown not Selected 01-Jan-2025 - 31-Dec-2025 option. Actual: " + actualText1);
+			    Assert.fail("Dropdown not Selected 01-Jan-2025 - 31-Dec-2025 option. Actual: " + actualText1);
 			}	
 		}
 		
@@ -437,54 +440,54 @@ public class BK_journal_Actions {
 						journallocators.exporttoexcelinedit.isDisplayed() && journallocators.exporttocsvinedit.isDisplayed() && 
 						journallocators.exporttopdfinedit.isDisplayed() && journallocators.printinedit.isDisplayed() && 
 						journallocators.inactiveinedit.isDisplayed() && journallocators.activeinedit.isDisplayed()) {
-				    System.out.println("All option are displaying succesfully");
+				    Assert.assertTrue(true,"All option are displaying succesfully");
 				} else {
-				    System.out.println(" All option are not displaying");
+				    Assert.fail(" All option are not displaying");
 				}
 				} catch (Exception e) {
 				    System.out.println("An error occurred " + e.getMessage());
 				}
 			
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.copyinedit);
-			Thread.sleep(3000);
+			HelperClass.waitForPageToLoad(driver);
 			try {
 				if (journallocators.copysuccessmessage.isDisplayed()) {
-				    System.out.println("copy clicked successfully");
+				    Assert.assertTrue(true,"copy clicked successfully");
 				} else {
-				    System.out.println("copy not clicked");
+				    Assert.fail("copy not clicked");
 				}
 				} catch (Exception e) {
 				    System.out.println("An error occurred" + e.getMessage());
 				}
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 		}
 		
 		public void VerifycancleselectionandcrossmarkinthedownJT() throws InterruptedException {
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.checkboxinedit);
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.cancelselection);
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			try {
 				if (journallocators.checkboxinedit.isSelected()) {
-				    System.out.println("Cancel selection not clicked");
+				    Assert.fail("Cancel selection not clicked");
 				} else {
-				    System.out.println("Cancel selection clicked successfully");
+				    Assert.assertTrue(true,"Cancel selection clicked successfully");
 				}
 				} catch (Exception e) {
 				    System.out.println("An error occurred " + e.getMessage());
 				}
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.checkboxinedit);
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.crossmark);
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			try {
 				if (journallocators.checkboxinedit.isSelected()) {
-				    System.out.println("Cross mark not clicked");
+				    Assert.fail("Cross mark not clicked");
 				} else {
-				    System.out.println("Cross mark clicked successfully");
+				    Assert.assertTrue(true,"Cross mark clicked successfully");
 				}
 				} catch (Exception e) {
 				    System.out.println("An error occurred " + e.getMessage());
@@ -501,14 +504,14 @@ public class BK_journal_Actions {
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()=' 01-Jan-2025 - 31-Dec-2025 ']")));
 			  HelperClass.ClickUsingJS(HelperClass.getDriver(), By.xpath("//span[text()=' 01-Jan-2025 - 31-Dec-2025 ']"));
 			  
-			Thread.sleep(2000);
+			  HelperClass.waitForPageToLoad(driver);
 			String actualText1 = HelperClass.getText(By.xpath("//span[@aria-label='dropdownlist']")).trim();
 			String expected1 = "5";
 	 
 			if (actualText1.equals(expected1)) {
-			    System.out.println("Dropdown Selected 5 option");
+			    Assert.assertTrue(true,"Dropdown Selected 5 option");
 			} else {
-			    System.out.println("Dropdown not Selected 5 option. Actual: " + actualText1);
+			    Assert.fail("Dropdown not Selected 5 option. Actual: " + actualText1);
 			}	
 		}
 		
@@ -519,23 +522,23 @@ public class BK_journal_Actions {
 //			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Export As PDF ']")));
 //			HelperClass.safeClick(By.xpath("//span[text()='Export As PDF ']"));
 			
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.kebabinmaingrid);
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.exporttopdf);
-			Thread.sleep(20000);
+			HelperClass.waitForPageToLoad(driver);
 			
 			//Thread.sleep(2000);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.kebabinmaingrid);
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.exporttoexcel);
-			Thread.sleep(20000);
+			HelperClass.waitForPageToLoad(driver);
 			
 			//Thread.sleep(2000);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.kebabinmaingrid);
-			Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.exporttocsv);
-			Thread.sleep(20000);
+			HelperClass.waitForPageToLoad(driver);
 		}
 		
 		public void addattachementforjournalandverifyJT() throws InterruptedException, AWTException {
@@ -546,7 +549,7 @@ public class BK_journal_Actions {
 			
 //			WebElement browser = driver.findElement(By.xpath("//button[@class='file-upload-button primary-button']"));
 //	        browser.click();
-	        Thread.sleep(2000);
+			HelperClass.waitForPageToLoad(driver);
 	 
 	        // Path of file to upload
 	        String filePath = "C:\\Users\\user\\Downloads\\Statement_186540 (3).pdf";
@@ -565,19 +568,19 @@ public class BK_journal_Actions {
 	        robot.keyRelease(KeyEvent.VK_V);
 	        robot.keyRelease(KeyEvent.VK_CONTROL);
 	 
-	        Thread.sleep(3000);
+	        HelperClass.waitForPageToLoad(driver);
 	 
 	        // Press ENTER
 	        robot.keyPress(KeyEvent.VK_ENTER);
 	        robot.keyRelease(KeyEvent.VK_ENTER);
-	        Thread.sleep(3000);
+	        HelperClass.waitForPageToLoad(driver);
 	        HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.saveandexitinaddjournal);
-	        Thread.sleep(3000);
+	        HelperClass.waitForPageToLoad(driver);
 	        try {
 			    if (HelperClass.isElementPresent(By.xpath("//mat-icon[text()='attachment']"))) {
-			        System.out.println("Attachement attached succesfully");
+			        Assert.assertTrue(true,"Attachement attached succesfully");
 			    } else {
-			        System.out.println("Attachement not attached");
+			        Assert.fail("Attachement not attached");
 			    }
 			} catch (Exception e) {
 			    System.out.println("An error occurred while verifying Confirm Delete: " + e.getMessage());
@@ -587,43 +590,43 @@ public class BK_journal_Actions {
 		public void verifyviewoptionthroughjournalidandiconJT() throws InterruptedException {
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.journalid);
 			if (journallocators.journalele.isDisplayed()) {
-			    System.out.println("Details opened succesfully");
+			    Assert.assertTrue(true,"Details opened succesfully");
 			} else {
-			    System.out.println("Details opened succesfully");
+			    Assert.fail("Details not opened");
 			}	
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.downloadinpopup);
-			Thread.sleep(5000);
+			HelperClass.waitForPageToLoad(driver);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.editiconinpopup);
 			if (journallocators.editjournalele.isDisplayed()){
-			    System.out.println("Successfully navigated to edit dividend page");
+			    Assert.assertTrue(true,"Successfully navigated to edit journal page");
 			} else {
-			    System.out.println("not navigated to edit dividend page");
+			    Assert.fail("not navigated to edit journal page");
 			}	
 		}
 		public void Verifythepageviewanddownloadandeditandkebabintheparticularrow() throws InterruptedException {
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.pageview);
 			if (journallocators.journalele.isDisplayed()) {
-			    System.out.println("Details opened succesfully");
+			    Assert.assertTrue(true,"Details opened succesfully");
 			} else {
-			    System.out.println("Details opened succesfully");
+			    Assert.fail("Details not opened");
 			}	
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.cancleforpopup);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.downloadinrow);
-			Thread.sleep(5000);
+			HelperClass.waitForPageToLoad(driver);
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.editiconjournal);
 			if (journallocators.editjournalele.isDisplayed()) {
-			    System.out.println("Successfully navigated to edit dividend page");
+			    Assert.assertTrue(true,"Successfully navigated to edit journal page");
 			} else {
-			    System.out.println("not navigated to edit dividend page");
+			    Assert.fail("not navigated to edit journal page");
 			}	
 		}
 		
 		public void EditthejournalandverifyJT() {
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.editiconjournal);
 			if (journallocators.editjournalele.isDisplayed()) {
-			    System.out.println("Successfully navigated to edit dividend page");
+			    Assert.assertTrue(true,"Successfully navigated to edit journal page");
 			} else {
-			    System.out.println("not navigated to edit dividend page");
+			    Assert.fail("not navigated to edit journal page");
 			}	
 			
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.referenceTF);
@@ -632,9 +635,9 @@ public class BK_journal_Actions {
 			HelperClass.ClickUsingJS(HelperClass.getDriver(), journallocators.saveandexitinaddjournal);
 			try {
 			    if (HelperClass.isElementPresent(By.xpath("//span[@title='description was ended here']"))) {
-			        System.out.println("Journal edited succesfully");
+			        Assert.assertTrue(true,"Journal edited succesfully");
 			    } else {
-			        System.out.println("Journal not edited");
+			        Assert.fail("Journal not edited");
 			    }
 			} catch (Exception e) {
 			    System.out.println("An error occurred while verifying Confirm Delete: " + e.getMessage());

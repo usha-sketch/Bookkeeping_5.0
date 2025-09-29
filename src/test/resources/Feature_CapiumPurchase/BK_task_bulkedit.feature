@@ -21,17 +21,17 @@ Feature: Bulkedit
  #Given navigate to inside the client and verify BE
  #Then navigate to bulk edit in task and verify BE
  #Then Verify search bar in main grid and verify BE
- #
+ 
  #Scenario: Select the accounts in accounts dropdown and verify BE
  #Given navigate to inside the client and verify BE
  #Then navigate to bulk edit in task and verify BE
  #Then select the from and to date and verify BE
- #
+ 
  #Scenario: verify reference number and edit and download options BE
  #Given navigate to inside the client and verify BE
  #Then navigate to bulk edit in task and verify BE
  #Then verify reference number and edit and download options BE
- #
+ 
  
  
  

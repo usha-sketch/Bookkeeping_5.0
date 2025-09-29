@@ -5,6 +5,9 @@ import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -96,6 +99,15 @@ public class Capium_Login_Actions {
 	
 	@FindBy(xpath="//img[@alt='Capium Logo']/ancestor::a")
 	public WebElement CapiumLogo;
+	
+	@FindBy(xpath="//p[normalize-space()='Track your clients finances in real time']/ancestor::a")
+	public WebElement bk5in_c_icon;
+	
+	@FindBy(xpath = "//p[text()='Track your clients finances in real time']//parent::a")
+	public WebElement Homepage_BK_module;
+	
+	@FindBy(xpath="//div[normalize-space()='Charity Accounts']/parent::div")
+	public WebElement Charity;
  
  
 	public void EnterUsername(String username) throws InterruptedException {
@@ -125,66 +137,78 @@ public class Capium_Login_Actions {
 	public void Navigate_to_bookkeeping_module() {
  
 		WebDriver driver = HelperClass.getDriver();
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-		try {
-			
-			
-			if (isElementVisible(C_icon_inside_modules, wait)) {
-				HelperClass.safeClick(C_icon_inside_modules, "C-icon");
-				HelperClass.safeClick(Capium365InsideCicon, "Capium 365 inside Cicon");
-				HelperClass.safeClick(CapiumLogo, "Capium Logo");
-				HelperClass.safeClick(CorporationTaxInsideC, "Corporation Tax inside Cicon");
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
  
-				Log.info("Navigated to Corporation Tax module via C-icon flow.");
-				return;
-			}
-			// Case 1: Direct access from homepage
-			if (isElementVisible(CorporationTax_Module, wait)) {
-				HelperClass.safeClick(CorporationTax_Module, "Corporation Tax from homepage");
-				Log.info("Navigated directly to Corporation Tax module.");
-				return;
-			}
+	    try {
+	        // Case 1: Direct access
+	        if (isElementVisible(Homepage_BK_module, wait)) {
+	            HelperClass.safeClick(Homepage_BK_module, "Bookkeeping module from homepage");
+	            Log.info("Navigated directly to Bookkeeping module.");
+	            return;
+	        }
+	        // Case 2: Old Eco modules
+	        List<WebElement> oldEcoModules = HelperClass.getDriver().findElements(
+	                By.xpath("//a/div[contains(@class,'circle') and " +
+	                         "(normalize-space()='Accounts Production' " +
+	                         "or normalize-space()='Self Assessment' " +
+	                         "or normalize-space()='Corporation Tax' " +
+	                         "or normalize-space()='Bookkeeping')]")
+	            );
  
-			// Case 2: Old Eco modules (Capium 365, Charity, etc.)
-			List<WebElement> oldEcoModules = HelperClass.getDriver()
-					.findElements(By.xpath("//a/div[contains(@class,'circle') and "
-							+ "(normalize-space()='Capium 365' or normalize-space()='Charity')]"));
+	            if (!oldEcoModules.isEmpty()) {
+	                System.out.println("Old Eco space detected. Found " + oldEcoModules.size() + " modules.");
  
-			if (!oldEcoModules.isEmpty()) {
-				Log.info("Old Eco space detected. Found " + oldEcoModules.size() + " modules.");
+	                boolean clickedModule = false;
  
-				for (WebElement module : oldEcoModules) {
-					String classAttr = module.getAttribute("class");
-					if (classAttr != null && (classAttr.contains("disabled") || classAttr.contains("lock"))) {
-						Log.info("Skipping locked module: " + module.getText());
-						continue;
-					}
+	                for (WebElement module : oldEcoModules) {
+	                    String classAttr = module.getAttribute("class");
+	                    if (classAttr != null && (classAttr.contains("disabled") || classAttr.contains("lock"))) {
+	                        System.out.println("Skipping locked module: " + module.getText());
+	                        continue;
+	                    }
  
-					if (module.isDisplayed() && module.isEnabled()) {
-						HelperClass.safeClick(module, "Old Eco module: " + module.getText());
+	                    if (module.isDisplayed() && module.isEnabled()) {
+	                        System.out.println("Clicking Old Eco module: " + module.getText());
+	                        module.click();
+	                        clickedModule = true;
+	                        break;
+	                    }
+	                }
  
-						if (isElementVisible(CiconFivePointO, wait)) {
-							HelperClass.safeClick(CiconFivePointO, "5.0 Cicon");
-							wait.until(ExpectedConditions.visibilityOf(CorporationTaxInsideC));
-							HelperClass.safeClick(CorporationTaxInsideC, "Corporation Tax inside Cicon");
+	                if (clickedModule) {
+	                    try {
+	                        HelperClass.safeClick(C_icon_inside_modules, null);
+	                        HelperClass.safeClick(Charity, "Capium 365 inside Cicon");
+	                        wait.until(ExpectedConditions.visibilityOf(CapiumLogo));
+	        	            HelperClass.safeClick(CapiumLogo, "Capium Logo");
+	        	            HelperClass.safeClick(bk5in_c_icon, "Bookkeeping module inside Cicon");
  
-							Log.info("Navigated to Corporation Tax module via Old Eco redirection.");
-							return;
-						}
-					}
-				}
-			}
+	                        System.out.println("Clicked Home from C icon inside Old Eco module.");
+	                    } catch (StaleElementReferenceException sere) {
+	                        System.out.println("Stale element detected for C icon. Retrying in next loop...");
+	                    } catch (TimeoutException te) {
+	                        System.out.println("C icon or Home icon not clickable yet. Will retry in next loop.");
+	                    }
+	                }
+	            }
  
-			// Case 3: 3.0 module Inside C-icon flow
-			
+	        
+	        if (isElementVisible(C_icon_inside_modules, wait)) {
+	            HelperClass.safeClick(C_icon_inside_modules, "C-icon");
+	            HelperClass.safeClick(Charity, "Capium 365 inside Cicon");
+	            wait.until(ExpectedConditions.visibilityOf(CapiumLogo));
+	            HelperClass.safeClick(CapiumLogo, "Capium Logo");
+	            HelperClass.safeClick(bk5in_c_icon, "Bookkeeping module inside Cicon");
+	            Log.info("Navigated to Bookkeeping module via C-icon flow.");
+	            return;
+	        }
  
-			// If reached here → not found
-			Log.warn("Corporation Tax module could not be found in any known location.");
+	        Log.warn("Bookkeeping module could not be found in any known location.");
  
-		} catch (Exception e) {
-			Log.error("Error while navigating to Corporation Tax module: " + e.getMessage());
-			//HelperClass.captureScreenshot("CorporationTaxNavigationError");
-		}
+	    } catch (Exception e) {
+	        Log.error("Error while navigating to Bookkeeping module: " + e.getMessage());
+//	        HelperClass.captureScreenshot("BookkeepingNavigationError");
+	    }
 	}
 	
 	public void Logout() throws IOException {
@@ -251,5 +275,19 @@ public class Capium_Login_Actions {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+	
+	public static void waitForPageToLoad(WebDriver driver) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		try {
+			wait.until(webDriver -> (Boolean) js.executeScript("return (window.angular !== undefined) && "
+					+ "(angular.element(document).injector() !== undefined) && "
+					+ "(angular.element(document).injector().get('$http').pendingRequests.length === 0);"));
+		} catch (Exception e) {
+			//Log.warn("Angular wait skipped: " + e.getMessage());
+		}
+ 
+		wait.until(webDriver -> js.executeScript("return document.readyState").toString().equals("complete"));
 	}
 }
